@@ -1,16 +1,14 @@
 package se.iths.christoffer.labb2;
 
-public class Golf extends Product {
+public class Drivers extends Product {
 
-    private String typeOfObject;
-
-    public Golf(int articleNumber, String title, double price, String typeOfObject, String description) {
+    public Drivers(int articleNumber, String title, double price, String description) {
         super(articleNumber, title, price, description);
-        this.typeOfObject = typeOfObject;
+
     }
 
     @Override
     public String category() {
-        return typeOfObject;
+        return "Driver";
     }
 }

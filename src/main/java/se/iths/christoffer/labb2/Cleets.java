@@ -1,16 +1,14 @@
 package se.iths.christoffer.labb2;
 
-public class Football extends Product {
+public class Cleets extends Product {
 
-    private String typeOfObject;
-
-    public Football(int articleNumber, String title, double price, String typeOfObject, String description) {
+    public Cleets(int articleNumber, String title, double price, String description) {
         super(articleNumber, title, price, description);
-        this.typeOfObject = typeOfObject;
+
     }
 
     @Override
     public String category() {
-        return typeOfObject;
+        return "Fotbollsskor";
     }
 }

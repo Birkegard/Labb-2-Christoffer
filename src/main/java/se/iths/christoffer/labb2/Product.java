@@ -1,3 +1,5 @@
+package se.iths.christoffer.labb2;
+
 public abstract class Product {
     private int articleNumber;
     private String title;
@@ -45,4 +47,5 @@ public abstract class Product {
     }
 
     public abstract String category();
+
 }
