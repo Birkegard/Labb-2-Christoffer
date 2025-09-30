@@ -2,7 +2,8 @@ package se.iths.christoffer.labb2;
 
 public class Main {
     public static void main(String[] args) {
-        WebshopManager open = new WebshopManager();
+        Ui UiScanner = new UiScanner();
+        WebshopManager open = new WebshopManager(UiScanner);
 
         open.openShop();
 
