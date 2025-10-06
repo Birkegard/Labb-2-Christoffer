@@ -1,4 +1,12 @@
-package se.iths.christoffer.labb2;
+package se.iths.christoffer.labb2.model;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
 
 public abstract class Product {
     private int articleNumber;
@@ -12,6 +20,10 @@ public abstract class Product {
         this.title = title;
         this.price = price;
         this.description = description;
+    }
+
+    public Product() {
+
     }
 
     public int getArticleNumber() {

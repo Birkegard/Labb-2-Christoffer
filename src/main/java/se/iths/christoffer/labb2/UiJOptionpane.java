@@ -1,33 +1,30 @@
 package se.iths.christoffer.labb2;
 
-import java.util.Scanner;
+import javax.swing.*;
 
-public class UiScanner implements Ui {
-    Scanner sc = new Scanner(System.in);
-
+public class UiJOptionpane implements Ui {
     @Override
     public String prompt(String message) {
-        System.out.println(message);
+        return JOptionPane.showInputDialog(null, message);
 
-        return sc.nextLine();
     }
 
     @Override
     public void info(String message) {
-        System.out.println(message);
-
+        JOptionPane.showMessageDialog(null, message);
     }
 
     @Override
     public String menu() {
-        System.out.println("\nVälkommen till Intrasport!");
-        System.out.println("""
+        String choice = JOptionPane.showInputDialog(null, """
+                Välkommen till Intrasport
                 1. Lägg till en produkt.
                 2. Visa hela sortimentet.
                 3. Visa info om en produkt.
                 4. Stäng applikationen.""");
-        System.out.print("Gör ditt val: ");
-
-        return sc.nextLine();
+        if (choice == null) {
+            return "4";
+        }
+        return choice;
     }
 }

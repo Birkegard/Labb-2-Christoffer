@@ -1,20 +1,50 @@
 package se.iths.christoffer.labb2;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import se.iths.christoffer.labb2.model.Cleets;
+import se.iths.christoffer.labb2.model.Drivers;
+import se.iths.christoffer.labb2.model.Product;
+import se.iths.christoffer.labb2.model.Skates;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class WebshopManager {
-    public Scanner sc = new Scanner(System.in);
-    public ArrayList<Product> productList;
+    private ArrayList<Product> productList;
     private Ui ui;
+    ObjectMapper mapper;
 
-    public WebshopManager(Ui ui) {
-        productList = new ArrayList<>();
+    public WebshopManager(Ui ui, ObjectMapper mapper) {
         this.ui = ui;
+        this.mapper = mapper;
+
+        File file = new File("Productlist.json");
+
+        if (file.exists() && file.length() > 0) {
+            try {
+                productList = mapper.readValue(file, mapper.getTypeFactory()
+                        .constructCollectionType(ArrayList.class, Product.class));
+                ui.info("Läste in produkter från fil: " + productList.size());
+            } catch (IOException e) {
+                ui.info("Kunde inte läsa in produktlistan: " + e.getMessage());
+                //productList = new ArrayList<>();
+            }
+        } else {
+            ui.info("Ingen fil hittades eller filen var tom.");
+            productList = new ArrayList<>();
+        }
     }
 
     private void addProduct(Product product) {
         productList.add(product);
+        try {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("Productlist.json"), productList);
+        } catch (IOException e) {
+            ui.info("Problem med filen: " + e.getMessage());
+        }
     }
 
     public void addSkates(int articlenumber, String title, double price, String description) {
@@ -76,18 +106,25 @@ public class WebshopManager {
     }
 
     public void showProductlist() {
-        for (Product product : productList) {
-            ui.info("Artikelnummer " + product.getArticleNumber() + ":\n" +
-                    product.getTitle() + " " + product.getDescription() + ", $" + product.getPrice() + " .");
+        try {
+            ui.info(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(productList));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
     }
+    // }
 
     public void showProductInformation() {
         boolean found = false;
 
-        System.out.println("Skriv in artikelnummer på produkten: ");
-        int articlenumber = sc.nextInt();
-        sc.nextLine();
+        String articlenumberInput = ui.prompt("Skriv in artikelnummer på produkten: ");
+        int articlenumber = 0;
+        try {
+            articlenumber = Integer.parseInt(articlenumberInput);
+        } catch (NumberFormatException e) {
+            ui.info("Invalid input");
+        }
+
         for (Product product : productList) {
             if (articlenumber == product.getArticleNumber()) {
                 ui.info(product.category() + "\n" + product.getTitle() + " " +
