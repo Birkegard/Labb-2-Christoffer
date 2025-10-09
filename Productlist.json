@@ -1,0 +1,37 @@
+[ "java.util.ArrayList", [ {
+  "@class" : "se.iths.christoffer.labb2.Skates",
+  "articleNumber" : 1,
+  "title" : "Bauer",
+  "price" : 13.0,
+  "description" : "Vapor"
+}, {
+  "@class" : "se.iths.christoffer.labb2.Cleets",
+  "articleNumber" : 2,
+  "title" : "Adidas",
+  "price" : 300.0,
+  "description" : "Predator"
+}, {
+  "@class" : "se.iths.christoffer.labb2.Drivers",
+  "articleNumber" : 3,
+  "title" : "Cobra",
+  "price" : 300.0,
+  "description" : "Speedster"
+}, {
+  "@class" : "se.iths.christoffer.labb2.Skates",
+  "articleNumber" : 0,
+  "title" : "CCM",
+  "price" : 300.0,
+  "description" : "Tacks"
+}, {
+  "@class" : "se.iths.christoffer.labb2.Skates",
+  "articleNumber" : 4,
+  "title" : "Reebok",
+  "price" : 123.0,
+  "description" : "Pump"
+}, {
+  "@class" : "se.iths.christoffer.labb2.Cleets",
+  "articleNumber" : 5,
+  "title" : "Mizuno",
+  "price" : 1000.0,
+  "description" : "Okey"
+} ] ]

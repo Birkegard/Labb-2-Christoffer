@@ -30,6 +30,7 @@ public class WebshopManager {
                 ui.info("Läste in produkter från fil: " + productList.size());
             } catch (IOException e) {
                 ui.info("Kunde inte läsa in produktlistan: " + e.getMessage());
+                productList = new ArrayList<>();
             }
         } else {
             ui.info("Ingen fil hittades eller filen var tom.");
